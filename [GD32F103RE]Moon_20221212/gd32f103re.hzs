@@ -70,6 +70,9 @@
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;inc;task"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;src"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;src;task"/>
+  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;yss"/>
+  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;yss;src"/>
+  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;yss;src;gui"/>
  </Project>
  <Register1>
   <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU/internal;GPIOA/IDR;GPIOA/ODR;GPIOA/BSRR;GPIOA/LCKR" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context;GPIOA;GPIOA/IDR" name="yss" decimalNodes="" octalNodes="" unsignedNodes=""/>
@@ -139,7 +142,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="89" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="prj/src/main.cpp" selected="1" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="37" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="prj/src/main.cpp" selected="1" top="19" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="13" y="18" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="prj/src/board.cpp" selected="0" top="4" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="23" useTextEdit="1" openedFrom="/home/mymy49/library/yss_supports_project/[GD32F103RE]Moon_20221212/prj/src/board.cpp" useBinaryEdit="0" left="0" path="prj/inc/board.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="63" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="yss/src/gui/Bmp565Buffer.cpp" selected="0" top="52" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="gd32f103rg" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="ST-LINK/V2" buildConfiguration="THUMB Debug" sessionSettings="" debugSearchFileMap="/home/mymy49/library/yss/yss/instance/instance_timer_gd32f1.cpp&#xa;" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="388991"/>
 </session>

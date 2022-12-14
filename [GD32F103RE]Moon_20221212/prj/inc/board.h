@@ -19,11 +19,13 @@
 #ifndef BOARD__H_
 #define BOARD__H_
 
-//#include <mod/cputft/ILI9341.h>
+#include <mod/spi_tft_lcd/ER_TFTM032_3.h>
+#include <gui/Bmp565Buffer.h>
 //#include <mod/eeprom/CAT24C256.h>
 //#include <yss/Fat32.h>
 
-//extern ILI9341 lcd;
+extern ER_TFTM032_3 lcd;
+extern Bmp565Buffer brush;
 //extern CAT24C256 eeprom;
 
 #endif
