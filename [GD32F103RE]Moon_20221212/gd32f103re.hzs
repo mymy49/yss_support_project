@@ -64,12 +64,7 @@
   <ProjectSessionItem path="gd32f103rg;gd32f103rg"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;CMSIS Files"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files"/>
-  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj"/>
-  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;font"/>
-  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;inc"/>
-  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;inc;task"/>
-  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;src"/>
-  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;prj;src;task"/>
+  <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;app"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;yss"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;yss;src"/>
   <ProjectSessionItem path="gd32f103rg;gd32f103rg;Source Files;yss;src;gui"/>
@@ -142,10 +137,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="37" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="prj/src/main.cpp" selected="1" top="19" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="13" y="18" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="prj/src/board.cpp" selected="0" top="4" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="23" useTextEdit="1" openedFrom="/home/mymy49/library/yss_supports_project/[GD32F103RE]Moon_20221212/prj/src/board.cpp" useBinaryEdit="0" left="0" path="prj/inc/board.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="63" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="yss/src/gui/Bmp565Buffer.cpp" selected="0" top="52" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="63" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="yss/src/gui/Bmp565Buffer.cpp" selected="1" top="52" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="gd32f103rg" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="ST-LINK/V2" buildConfiguration="THUMB Debug" sessionSettings="" debugSearchFileMap="/home/mymy49/library/yss/yss/instance/instance_timer_gd32f1.cpp&#xa;" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="388991"/>
 </session>

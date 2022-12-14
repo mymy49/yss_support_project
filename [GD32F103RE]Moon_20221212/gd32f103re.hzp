@@ -49,7 +49,7 @@
     </folder>
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
-      <folder Name="prj" exclude="" filter="" path="prj" recurse="Yes" />
+      <folder Name="app" exclude="" filter="" path="app" recurse="Yes" />
       <folder Name="yss" exclude="" filter="" path="yss" recurse="Yes" />
     </folder>
     <folder Name="System Files">

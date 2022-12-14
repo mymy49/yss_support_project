@@ -49,18 +49,6 @@ int main(void)
 
 	while (true)
 	{
-		lcd.setBackgroundColor(0xFF, 0x00, 0x00);
-		lcd.clear();
-		thread::delay(500);
-
-		lcd.setBackgroundColor(0x00, 0xFF, 0x00);
-		lcd.clear();
-		thread::delay(500);
-
-		lcd.setBackgroundColor(0x00, 0x00, 0xFF);
-		lcd.clear();
-		thread::delay(500);
-
 	//	// CAN 수신 핸들러
 	//	while(can1.isReceived())
 	//	{
