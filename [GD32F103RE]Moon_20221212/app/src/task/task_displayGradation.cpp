@@ -16,51 +16,66 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#include "../inc/task.h"
+#include <task.h>
 #include <yss.h>
-
-#define MAX_TASK_THREAD		4
+#include <board.h>
 
 namespace Task
 {
-	uint32_t gThreadCnt;
-	threadId gThreadId[MAX_TASK_THREAD];
-	FunctionQueue *gFq;
-	Mutex gMutex;
-
-	void setFunctionQueue(FunctionQueue &obj)
+	error displayGradation(FunctionQueue *obj)
 	{
-		gFq = &obj;
-	}
+		Position pos = {35, 32};
+		lock(); // unlock()을 만날 때까지 외부에서 이 함수를 강제 종료 시키지 못한다.
+		clearTask();
 
-	void lock(void)
-	{
-		gMutex.lock();
-	}
+		lcd.lock();
+		lcd.setBackgroundColor(0x30, 0x30, 0x30);
+		lcd.clear();
 
-	void unlock(void)
-	{
-		gMutex.unlock();
-	}
+		brush.setSize(35, 256);
 
-	void addThread(void (*func)(void), uint32_t stackSize)
-	{
-		if(gThreadCnt < MAX_TASK_THREAD)
-			gThreadId[gThreadCnt++] = thread::add(func, stackSize);
-	}
-
-	void clearTask(void)
-	{
-		for(uint32_t i=0;i<gThreadCnt;i++)
+		// 빨강 그라데이션
+		for(int16_t i=0;i<256;i++)
 		{
-			if(gThreadId[i])
-			{
-				thread::remove(gThreadId[i]);
-				gThreadId[i] = 0;
-			}
+			brush.setBrushColor(i, 0, 0);
+			brush.drawLine({0, i}, {34, i});
 		}
+		lcd.drawBmp(pos, brush.getBmp565());
+		pos.x += 45;
 
-		gThreadCnt = 0;
+		// 초록 그라데이션
+		for(int16_t i=0;i<256;i++)
+		{
+			brush.setBrushColor(0, i, 0);
+			brush.drawLine({0, i}, {34, i});
+		}
+		lcd.drawBmp(pos, brush.getBmp565());
+		pos.x += 45;
+
+		// 파랑 그라데이션
+		for(int16_t i=0;i<256;i++)
+		{
+			brush.setBrushColor(0, 0, i);
+			brush.drawLine({0, i}, {34, i});
+		}
+		lcd.drawBmp(pos, brush.getBmp565());
+		pos.x += 45;
+
+		// 검정 그라데이션
+		for(int16_t i=0;i<256;i++)
+		{
+			brush.setBrushColor(i, i, i);
+			brush.drawLine({0, i}, {34, i});
+		}
+		lcd.drawBmp(pos, brush.getBmp565());
+		lcd.unlock();
+
+		unlock();
+		
+		thread::delay(5000);
+			
+		return Error::NONE;
 	}
 }
+
 

@@ -19,19 +19,32 @@
 #ifndef TASK__H_
 #define TASK__H_
 
-//#include <util/FunctionQueue.h>
+#include <util/FunctionQueue.h>
+#include <drv/Ltdc.h>
+#include <sac/Rtouch.h>
 
-//namespace task
-//{
-//	enum
-//	{
-//		MAX_THREAD = 5
-//	};
+class Frame;
 
-//	extern int gThreadId[MAX_THREAD];
-//	extern Mutex gMutex;
+// FunctionQueue에 의해 순차 수행되는 task의 함수 프로토타입 선언부이다.
+namespace Task
+{
+	void setFunctionQueue(FunctionQueue &obj);
+	void lock(void);
+	void unlock(void);
+	void addThread(void (*func)(void), uint32_t stackSize);
+	void clearTask(void);
+	void setFrame(Frame *obj);
+	
+	// task_Logo.cpp
+	error displayLogo(FunctionQueue *obj);
+	
+	// task_displayGradation.cpp
+	error displayGradation(FunctionQueue *obj);
 
-//	void clear(void);
-//}
+	// task_displayGauge.cpp
+	error displayGauge(FunctionQueue *obj);
+
+}
 
 #endif
+

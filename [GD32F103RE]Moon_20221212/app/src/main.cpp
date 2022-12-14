@@ -16,12 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-//#include <__cross_studio_io.h>
+#include <yss/debug.h>
 
 #include <yss.h>
-#include "board.h"
+#include <board.h>
+#include <task.h>
+
 //#include <util/FunctionQueue.h>
-//#include <task/display.h>
 //#include <task/moduleTest.h>
 //#include <stdio.h>
 
@@ -41,14 +42,16 @@ int main(void)
 
 	CanFrame rcvBuf;
 	
-	//gFq.start();
-	//gFq.add(task::display::displayRgbForTest);
-	//gFq.add(task::display::displayMeasureValueExample);
-	//gFq.add(task::moduleTest::testEeprom);
-	//gFq.add(task::moduleTest::testCanSending);
-
+	functionQueue.start();
+	functionQueue.add(Task::displayLogo);
+	functionQueue.add(Task::displayGradation);
+	functionQueue.add(Task::displayGauge);
+	
 	while (true)
 	{
+		// 남은 Heap 메모리의 용량을 출력
+		debug_printf("\rHeap remaining capacity = %d", getHeapRemainingCapacity());
+
 	//	// CAN 수신 핸들러
 	//	while(can1.isReceived())
 	//	{

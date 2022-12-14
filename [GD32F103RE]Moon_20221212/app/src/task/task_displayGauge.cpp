@@ -16,62 +16,36 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#include "board.h"
-#include <task/moduleTest.h>
-#include <__cross_studio_io.h>
-/*
-namespace task
+#include <task.h>
+#include <yss.h>
+#include <board.h>
+
+namespace Task
 {
-namespace moduleTest
-{
-	signed int testEeprom(FunctionQueue *obj)
+	void thread_displayGauge(void)
 	{
-		unsigned int data;
+		lcd.lock();
+		lcd.setBackgroundColor(0x30, 0x30, 0x30);
+		lcd.clear();
+		lcd.unlock();
 
-		debug_printf("Start!! eeprom testing\n");
-	
-		// EEPROM 테스트
-		eeprom.read(0, data);
-		if(data != 0x12345678)
+		while(1)
 		{
-			debug_printf("not match!!\n", data);
-
-			data = 0x12345678;
-			eeprom.write(0, data);
-			data = 0;
-			eeprom.read(0, data);
-			debug_printf("updated to eeprom[0] = 0x%08X\n", data);
+			thread::yield();
 		}
-		else
-		{
-			debug_printf("match!!\n", data);
-		}
-
-		debug_printf("End!! eeprom testing\n");
-
-		return 0;
 	}
 
-	signed int testCanSending(FunctionQueue *obj)
+	error displayGauge(FunctionQueue *obj)
 	{
-		CanFrame sendBuf = {0,};
+		lock(); // unlock()을 만날 때까지 외부에서 이 함수를 강제 종료 시키지 못한다.
+		clearTask();
 
-		debug_printf("Start!! CAN sending testing\n");
-
-		sendBuf.dataLength = 8;
-		sendBuf.extension = true;
-		sendBuf.id = 0x12345678;
-
-		for(int i=0;i<10;i++)
-		{
-			can1.lock();
-			can1.send(sendBuf);
-			can1.unlock();
-		}
-
-		debug_printf("End!! CAN sending testing\n");
-		return 0;
+		addThread(thread_displayGauge, 1024);
+		
+		unlock();
+			
+		return Error::NONE;
 	}
 }
-}
-*/
+
+

@@ -21,6 +21,7 @@
 ER_TFTM032_3 lcd;
 Bmp565Buffer brush(20000);
 //CAT24C256 eeprom;
+FunctionQueue functionQueue(16);
 
 void initBoard(void)
 {
@@ -49,7 +50,8 @@ void initBoard(void)
 	lcd.setConfig(lcdConfig);
 	lcd.initialize();
 	lcd.setBmp565Buffer(brush);
-	lcd.setBackgroundColor(0xFF, 0x00, 0x00);
+	lcd.setBackgroundColor(0x00, 0x00, 0x00);
+	lcd.setDirection(true, false, false);
 	lcd.clear();
 
 //	// I2C2 초기화

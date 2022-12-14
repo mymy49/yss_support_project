@@ -21,7 +21,7 @@
       arm_target_interface_type="SWD"
       arm_target_loader_applicable_loaders="Flash"
       arm_target_loader_default_loader="Flash"
-      c_user_include_directories="$(ProjectDir)/yss/inc;$(ProjectDir)/prj/inc"
+      c_user_include_directories="$(ProjectDir)/yss/inc;$(ProjectDir)/app/inc"
       debug_register_definition_file="$(DeviceRegisterDefinitionFile)"
       gcc_cplusplus_language_standard="gnu++11"
       gcc_entry_point="Reset_Handler"

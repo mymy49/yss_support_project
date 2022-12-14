@@ -16,18 +16,29 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef TASK_MODULE_TEST__H_
-#define TASK_MODULE_TEST__H_
+#include <task.h>
+#include <yss.h>
+#include <board.h>
+#include "../../bmp/Logo.h"
 
-//#include <util/FunctionQueue.h>
+namespace Task
+{
+	error displayLogo(FunctionQueue *obj)
+	{
+		lock(); // unlock()을 만날 때까지 외부에서 이 함수를 강제 종료 시키지 못한다.
+		clearTask();
 
-//namespace task
-//{
-//namespace moduleTest
-//{
-//	signed int testEeprom(FunctionQueue *obj);
-//	signed int testCanSending(FunctionQueue *obj);
-//}
-//}
+		lcd.lock();
+		lcd.setBackgroundColor(0xFF, 0xFF, 0xFF);
+		lcd.clear();
+		lcd.drawBmp({14, 0}, &Logo);
+		thread::delay(5000);
+		lcd.unlock();
+		
+		unlock();
+			
+		return Error::NONE;
+	}
+}
 
-#endif
+
