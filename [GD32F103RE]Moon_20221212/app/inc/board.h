@@ -29,6 +29,8 @@ extern ER_TFTM032_3 lcd;
 extern Bmp565Buffer brush;
 extern FunctionQueue functionQueue;
 
+void initBoard(void);
+
 //extern CAT24C256 eeprom;
 
 #endif
