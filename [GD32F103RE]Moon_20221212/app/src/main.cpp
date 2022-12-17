@@ -30,9 +30,9 @@ int main(void)
 	CanFrame rcvBuf;
 	
 	functionQueue.start();
-	functionQueue.add(Task::displayLogo);
+//	functionQueue.add(Task::displayLogo);
 	functionQueue.add(Task::displayGradation);
-	functionQueue.add(Task::displayGauge);
+//	functionQueue.add(Task::displayGauge);
 	
 	while (true)
 	{

@@ -31,8 +31,9 @@ class Gauge
 	Size mSize;
 	Color mBgColor, mBoaderColor;
 	uint8_t mBoaderThickness, mNumberOfBar, mLastDrawingCount;
-	float mMinValue, mMaxValue;
+	float mMinValue, mMaxValue, mUnderWarningValue, mUnderFaultValue, mWarningValue, mFaultValue;
 	float mValue;
+	bool mUnderWarningValueFlag, mUnderFaultValueFlag, mWarningValueFlag, mFaultValueFlag;
 
 public:
 	Gauge(void);
@@ -58,6 +59,14 @@ public:
 	bool IsNeedRedraw(void);
 
 	const Bmp565 *getBmp565(void);
+
+	void setUnderWarningValue(float value);
+
+	void setUnderFaultValue(float value);
+
+	void setWarningValue(float value);
+
+	void setFaultValue(float value);
 };
 
 #endif

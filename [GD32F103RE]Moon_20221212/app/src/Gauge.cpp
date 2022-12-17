@@ -28,6 +28,8 @@ Gauge::Gauge(void)
 	mNumberOfBar = 6;
 	mBoaderThickness = 5;
 	mSize = {30, 100};
+	mUnderWarningValueFlag = mUnderFaultValueFlag = mWarningValueFlag = mFaultValueFlag = false;
+
 	mBgColor.setToBlack();
 	mBoaderColor.setToWhite();
 }
@@ -78,6 +80,7 @@ void Gauge::draw(void)
 	Position pos, innerPos;
 	Size size, innerSize;
 	uint8_t count;
+	float stepValue, stepOffset;
 
 	mBmp565Buffer->setSize(mSize);
 	mBmp565Buffer->setBackgroundColor(mBoaderColor);
@@ -105,16 +108,30 @@ void Gauge::draw(void)
 	innerSize.width = size.width - 2;
 	innerSize.height = size.height - 2;
 
+	stepOffset = (mMaxValue - mMinValue) / (float)mNumberOfBar;
+	stepValue = mMinValue;
+
 	for(uint8_t i=0;i<count;i++)
 	{
 		mBmp565Buffer->setBrushColor(0x60, 0x60, 0x60);
 		mBmp565Buffer->fillRect(pos, size);
+		
+		if(mUnderFaultValueFlag && stepValue <= mUnderFaultValue)
+			mBmp565Buffer->setBrushColor(0xD0, 0x00, 0x20);
+		else if(mUnderWarningValueFlag && stepValue <= mUnderWarningValue)
+			mBmp565Buffer->setBrushColor(0xD0, 0xD0, 0x20);
+		else if(mFaultValueFlag && stepValue >= mFaultValue)
+			mBmp565Buffer->setBrushColor(0xD0, 0x00, 0x20);
+		else if(mWarningValueFlag && stepValue >= mWarningValue)
+			mBmp565Buffer->setBrushColor(0xD0, 0xD0, 0x20);
+		else
+			mBmp565Buffer->setBrushColor(0x20, 0xD0, 0x20);
 
-		mBmp565Buffer->setBrushColor(0x20, 0xC0, 0x20);
 		mBmp565Buffer->fillRect(pos, size);
 
 		pos.y -= size.height + 1;
 		innerPos.y = pos.y + 1;
+		stepValue += stepOffset;
 	}
 }
 
@@ -133,5 +150,29 @@ bool Gauge::IsNeedRedraw(void)
 	uint8_t count = (mValue - mMinValue) / (mMaxValue - mMinValue) * (float)mNumberOfBar;
 	
 	return count != mLastDrawingCount;
+}
+
+void Gauge::setUnderWarningValue(float value)
+{
+	mUnderWarningValue = value;
+	mUnderWarningValueFlag = true;
+}
+
+void Gauge::setUnderFaultValue(float value)
+{
+	mUnderFaultValue = value;
+	mUnderFaultValueFlag = true;
+}
+
+void Gauge::setWarningValue(float value)
+{
+	mWarningValue = value;
+	mWarningValueFlag = true;
+}
+
+void Gauge::setFaultValue(float value)
+{
+	mFaultValue = value;
+	mFaultValueFlag = true;
 }
 
