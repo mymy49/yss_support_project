@@ -22,19 +22,6 @@
 #include <board.h>
 #include <task.h>
 
-//#include <util/FunctionQueue.h>
-//#include <task/moduleTest.h>
-//#include <stdio.h>
-
-//#define DEPTH_LV1	40
-//#define DEPTH_LV2	40
-//#define DEPTH_LV3	40
-
-void initBoard(void);
-
-//FunctionQueue gFq(16);
-//int gThreadId, gNum1, gNum2, gNum3;
-
 int main(void)
 {
 	initYss();
@@ -51,25 +38,6 @@ int main(void)
 	{
 		// 남은 Heap 메모리의 용량을 출력
 		debug_printf("\rHeap remaining capacity = %d", getHeapRemainingCapacity());
-
-	//	// CAN 수신 핸들러
-	//	while(can1.isReceived())
-	//	{
-	//		rcvBuf = can1.getPacket();
-	//		debug_printf("ID = 0x%08X\n", rcvBuf.id);
-	//		switch(rcvBuf.id)
-	//		{
-	//		case 0x1234 :
-	//			debug_printf("0x1234!!\n");
-	//			break;
-
-	//		case 0x2345 :
-	//			debug_printf("0x2345!!\n");
-	//			break;
-	//		}
-
-	//		can1.releaseFifo();
-	//	}
 		thread::yield();
 	}
 
