@@ -51,7 +51,7 @@ void initBoard(void)
 	lcd.initialize();
 	lcd.setBmp565Buffer(brush);
 	lcd.setBackgroundColor(0x00, 0x00, 0x00);
-	lcd.setDirection(true, false, false);
+	lcd.setDirection(false, false, false);
 	lcd.clear();
 
 //	// I2C2 초기화

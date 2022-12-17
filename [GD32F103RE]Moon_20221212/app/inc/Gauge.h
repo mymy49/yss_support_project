@@ -16,31 +16,49 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef YSS_MOD_SPI_TFT_LCD_MSP4021__H_
-#define YSS_MOD_SPI_TFT_LCD_MSP4021__H_
+#ifndef GAUGE_EXAMEPLE__H_
+#define GAUGE_EXAMEPLE__H_
 
-#include <config.h>
+#include <gui/util.h>
+#include <gui/Color.h>
 
-#if USE_GUI
+class Bmp565Buffer;
+struct Bmp565;
 
-#include <yss/instance.h>
-
-#if !defined(YSS_DRV_SPI_UNSUPPORTED) && !defined(YSS_DRV_GPIO_UNSUPPORTED)
-
-#include <mod/tft_lcd_driver/ST7796S_spi_with_Brush_RGB888.h>
-#include <gui/Brush.h>
-#include <yss/Mutex.h>
-
-class MSP4021 : public ST7796S_spi_with_Brush_RGB888
+class Gauge
 {
-  public:
-	MSP4021(void);
-	error initialize(void);	// virtual 0
+	Bmp565Buffer *mBmp565Buffer;
+	Size mSize;
+	Color mBgColor, mBoaderColor;
+	uint8_t mBoaderThickness, mNumberOfBar, mLastDrawingCount;
+	float mMinValue, mMaxValue;
+	float mValue;
+
+public:
+	Gauge(void);
+
+	void setBmp565Buffer(Bmp565Buffer &buf);
+
+	void setSize(Size size);
+
+	void setBackgroundColor(Color color);
+
+	void setBoaderColor(Color color);
+
+	void setBoaderThickness(uint8_t thickness);
+
+	void setScale(float min, float max);
+
+	void setValue(float value);
+
+	void setNumberOfBar(uint8_t num);
+
+	void draw(void);
+
+	bool IsNeedRedraw(void);
+
+	const Bmp565 *getBmp565(void);
 };
-
-#endif
-
-#endif
 
 #endif
 

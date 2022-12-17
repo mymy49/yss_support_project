@@ -19,19 +19,90 @@
 #include <task.h>
 #include <yss.h>
 #include <board.h>
+#include <Gauge.h>
+#include <util/ElapsedTime.h>
 
 namespace Task
 {
+	static float gValue1, gValue2;
+
 	void thread_displayGauge(void)
 	{
+		Position gauge1Pos = {30, 20}, gauge2Pos = {80, 20};
+		Gauge gauge1, gauge2;
+		float lastGauge1Value = 0, lastGauge2Value = 0;
+		
+		gauge1.setBmp565Buffer(brush);
+
+		gauge2.setBmp565Buffer(brush);
+		gauge2.setNumberOfBar(10);
+		gauge2.setSize({40, 150});
+		gauge2.setScale(0, 50);
+		
 		lcd.lock();
 		lcd.setBackgroundColor(0x30, 0x30, 0x30);
 		lcd.clear();
+		
+		gauge1.draw();
+		lcd.drawBmp(gauge1Pos, gauge1.getBmp565());
+
+		gauge2.draw();
+		lcd.drawBmp(gauge2Pos, gauge2.getBmp565());
 		lcd.unlock();
 
 		while(1)
 		{
+			if(lastGauge1Value != gValue1)
+			{
+				lastGauge1Value = gValue1;
+				gauge1.setValue(lastGauge1Value);
+				if(gauge1.IsNeedRedraw())
+				{
+					lcd.lock();
+					gauge1.draw();
+					lcd.drawBmp(gauge1Pos, gauge1.getBmp565());
+					lcd.unlock();
+				}
+			}
+
+			if(lastGauge2Value != gValue2)
+			{
+				lastGauge2Value = gValue2;
+				gauge2.setValue(lastGauge2Value);
+				if(gauge2.IsNeedRedraw())
+				{
+					lcd.lock();
+					gauge2.draw();
+					lcd.drawBmp(gauge2Pos, gauge2.getBmp565());
+					lcd.unlock();
+				}
+			}
+			
 			thread::yield();
+		}
+	}
+
+	void thread_changeValue(void)
+	{
+		ElapsedTime gauge1UpdateTime, gauge2UpdateTime;
+
+		while(1)
+		{
+			if(gauge1UpdateTime.getMsec() >= 100)
+			{
+				gauge1UpdateTime.reset();
+				gValue1 += 1.f;
+				if(gValue1 >= 100.f)
+					gValue1 = 0.f;
+			}
+
+			if(gauge2UpdateTime.getMsec() >= 100)
+			{
+				gauge2UpdateTime.reset();
+				gValue2 += 1.f;
+				if(gValue2 >= 50.f)
+					gValue2 = 0.f;
+			}
 		}
 	}
 
@@ -41,11 +112,11 @@ namespace Task
 		clearTask();
 
 		addThread(thread_displayGauge, 1024);
+		addThread(thread_changeValue, 1024);
 		
 		unlock();
 			
 		return Error::NONE;
 	}
 }
-
 
