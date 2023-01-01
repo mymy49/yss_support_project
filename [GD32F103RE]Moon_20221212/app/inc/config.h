@@ -30,7 +30,7 @@
 #define THREAD_GIVEN_CLOCK 20000
 
 // 최대 등록 가능한 쓰레드의 수
-#define MAX_THREAD 16
+#define MAX_THREAD 6
 
 // ####################### GUI 설정 #######################
 // GUI library Enable (true, false)
@@ -70,19 +70,19 @@
 
 // TIMER 활성화
 #define TIM1_ENABLE
-//#define PWM2_ENABLE
+#define TIM2_ENABLE
 #define PWM3_ENABLE
-//#define TIM4_ENABLE
-//#define TIM5_ENABLE
-//#define TIM6_ENABLE
-//#define TIM7_ENABLE
-//#define TIM8_ENABLE
-//#define TIM9_ENABLE
-//#define TIM10_ENABLE
-//#define TIM11_ENABLE
-//#define TIM12_ENABLE
-//#define TIM13_ENABLE
-//#define TIM14_ENABLE
+#define TIM4_ENABLE
+#define TIM5_ENABLE
+#define TIM6_ENABLE
+#define TIM7_ENABLE
+#define TIM8_ENABLE
+#define TIM9_ENABLE
+#define TIM10_ENABLE
+#define TIM11_ENABLE
+#define TIM12_ENABLE
+#define TIM13_ENABLE
+#define TIM14_ENABLE
 
 // I2C 활성화
 #define I2C1_ENABLE
