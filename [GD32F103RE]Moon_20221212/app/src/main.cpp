@@ -21,6 +21,36 @@
 #include <yss.h>
 #include <board.h>
 #include <task.h>
+#include <util/ElapsedTime.h>
+
+void thread_testCan(void)
+{
+	ElapsedTime time;
+	CanFrame sendBuf;
+
+	sendBuf.id = 100;
+	sendBuf.dataLength = 8;
+	sendBuf.extension = false;
+	sendBuf.data[0] = 10;
+	sendBuf.data[1] = 20;
+	sendBuf.data[2] = 30;
+	sendBuf.data[3] = 40;
+	sendBuf.data[4] = 50;
+	sendBuf.data[5] = 60;
+	sendBuf.data[6] = 70;
+	sendBuf.data[7] = 80;
+
+	while(1)
+	{
+		if(time.getMsec() >= 100)
+		{
+			time.reset();
+
+			can1.send(sendBuf);
+			sendBuf.data[0]++;
+		}
+	}
+}
 
 int main(void)
 {
@@ -33,11 +63,20 @@ int main(void)
 	functionQueue.add(Task::displayLogo);
 	functionQueue.add(Task::displayGradation);
 	functionQueue.add(Task::displayGauge);
+
+	thread::add(thread_testCan, 512);
 	
 	while (true)
 	{
-		// 남은 Heap 메모리의 용량을 출력
-		debug_printf("\rHeap remaining capacity = %d", getHeapRemainingCapacity());
+		while(can1.isReceived())
+		{
+			rcvBuf = can1.getPacket();
+
+			debug_printf("id = %d, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X\n", rcvBuf.id, rcvBuf.data[0], rcvBuf.data[1], rcvBuf.data[2], rcvBuf.data[3], rcvBuf.data[4], rcvBuf.data[5], rcvBuf.data[6], rcvBuf.data[7]);
+
+			can1.releaseFifo();
+		}
+
 		thread::yield();
 	}
 

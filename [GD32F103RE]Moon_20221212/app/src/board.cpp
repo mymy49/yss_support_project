@@ -20,7 +20,7 @@
 
 ER_TFTM032_3 lcd;
 Bmp565Buffer brush(20000);
-//CAT24C256 eeprom;
+CAT24C256 eeprom;
 FunctionQueue functionQueue(16);
 
 void initBoard(void)
@@ -54,32 +54,32 @@ void initBoard(void)
 	lcd.setDirection(false, false, false);
 	lcd.clear();
 
-//	// I2C2 초기화
-//	gpioB.setAsAltFunc(10, altfunc::PB10_I2C2_SCL);
-//	gpioB.setAsAltFunc(11, altfunc::PB11_I2C2_SDA);
+	// I2C2 초기화
+	gpioB.setAsAltFunc(10, altfunc::PB10_I2C2_SCL);
+	gpioB.setAsAltFunc(11, altfunc::PB11_I2C2_SDA);
 
-//	i2c2.setClockEn(true);
-//	i2c2.init(define::i2c::speed::STANDARD);
-//	i2c2.setInterruptEn(true);
+	i2c2.enableClock();
+	i2c2.init(define::i2c::speed::STANDARD);
+	i2c2.enableInterrupt();
 
-//	// EEPROM 초기화
-//	CAT24C256::Config eepromConfig
-//	{
-//		i2c2,	//drv::I2c &peri;
-//		{0, 0},	//config::gpio::Set writeProtectPin;
-//		0		//unsigned char addr;
-//	};
+	// EEPROM 초기화
+	CAT24C256::Config eepromConfig
+	{
+		i2c2,	//drv::I2c &peri;
+		{0, 0},	//config::gpio::Set writeProtectPin;
+		0		//unsigned char addr;
+	};
 
-//	eeprom.init(eepromConfig);
+	eeprom.init(eepromConfig);
 
-//	// CAN 초기화
-//	gpioA.setAsInput(11);	// CAN_RX
-//	gpioA.setAsAltFunc(12, altfunc::PA12_CAN_TX);
+	// CAN 초기화
+	gpioA.setAsInput(11);	// CAN_RX
+	gpioA.setAsAltFunc(12, altfunc::PA12_CAN_TX);
 	
-//	can1.setClockEn(true);
-//	can1.init(250000, 24);	// 250kbps, 수신 패킷 버퍼 64개
-//	can1.setExtendedMaskFilter(0, 0, 0); // 필터 전체 수신 설정
-//	can1.setInterruptEn(true);
+	can1.enableClock(true);
+	can1.initialize(250000, 24);	// 250kbps, 수신 패킷 버퍼 64개
+	can1.setExtendedMaskFilter(0, 0, 0); // 필터 전체 수신 설정
+	can1.enableInterrupt(true);
 
 //	// SDIO 초기화
 //	gpioC.setAsAltFunc(8, altfunc::PC8_SDIO_D0);

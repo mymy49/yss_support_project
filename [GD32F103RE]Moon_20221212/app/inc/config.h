@@ -27,10 +27,10 @@
 #define YSS_TIMER timer1
 
 // 쓰레드당 할당 받는 Systick Clock의 수
-#define THREAD_GIVEN_CLOCK 80000
+#define THREAD_GIVEN_CLOCK 20000
 
 // 최대 등록 가능한 쓰레드의 수
-#define MAX_THREAD 10
+#define MAX_THREAD 16
 
 // ####################### GUI 설정 #######################
 // GUI library Enable (true, false)
@@ -86,7 +86,7 @@
 
 // I2C 활성화
 #define I2C1_ENABLE
-//#define I2C2_ENABLE
+#define I2C2_ENABLE
 //#define I2C3_ENABLE
 //#define I2C4_ENABLE
 
@@ -111,7 +111,7 @@
 //#define SPI6_ENABLE
 
 // CAN 활성화
-//#define CAN1_ENABLE
+#define CAN1_ENABLE
 //#define CAN2_ENABLE
 
 // ADC 활성화

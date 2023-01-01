@@ -22,7 +22,7 @@
 #include <mod/spi_tft_lcd/ER_TFTM032_3.h>
 #include <gui/Bmp565Buffer.h>
 #include <util/FunctionQueue.h>
-//#include <mod/eeprom/CAT24C256.h>
+#include <mod/eeprom/CAT24C256.h>
 //#include <yss/Fat32.h>
 
 extern ER_TFTM032_3 lcd;
@@ -31,6 +31,6 @@ extern FunctionQueue functionQueue;
 
 void initBoard(void);
 
-//extern CAT24C256 eeprom;
+extern CAT24C256 eeprom;
 
 #endif
